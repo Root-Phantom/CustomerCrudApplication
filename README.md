@@ -213,10 +213,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact
 
-Your Name - [@yourusername](https://twitter.com/byte_sniper) - email@example.com
+Your Name - [@byte_sniper](https://twitter.com/byte_sniper) - nima.shokriv2005@gmail.com
 
-Project Link: [https://github.com/yourusername/customer-management-system]([https://github.com/yourusername/customer-management-system](https://github.com/Root-Phantom/CustomerCrudApplication)
+Project Link: [github](https://github.com/Root-Phantom/CustomerCrudApplication)
 
 ---
 
-⭐️ From [yourusername](https://github.com/Root-Phantom)
+⭐️ From [Root-Phantom](https://github.com/Root-Phantom)
