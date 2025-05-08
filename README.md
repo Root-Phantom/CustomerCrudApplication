@@ -1,61 +1,219 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Customer Management System 🚀
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A comprehensive customer management system built with Laravel that allows you to efficiently manage customer information, including soft delete functionality and a trash system.
 
-## About Laravel
+## ✨ Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Customer CRUD Operations**
+  - Create, read, update, and delete customers
+  - Soft delete functionality
+  - Trash management system
+  - Restore or permanently delete items
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Search & Filter**
+  - Search customers by name, email, phone, or bank account number
+  - Sort customers (newest to oldest / oldest to newest)
+  
+- **User Interface**
+  - Clean and responsive design
+  - Bootstrap-powered UI
+  - Font Awesome icons
+  - Success/info alerts
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🛠️ Built With
 
-## Learning Laravel
+- **Backend**: Laravel (PHP)
+- **Frontend**: Bootstrap 5, Font Awesome
+- **Database**: MySQL
+- **Features**: Soft Delete, Route Model Binding, Factories, Migrations
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 📋 Prerequisites
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+PHP >= 8.1
+Composer
+MySQL
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🚀 Installation
 
-## Laravel Sponsors
+1. Clone the repository
+   ```bash
+   git clone https://github.com/yourusername/customer-management-system.git
+   cd customer-management-system
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+2. Install dependencies
+   ```bash
+   composer install
+   npm install
+   ```
 
-### Premium Partners
+3. Set up environment file
+   ```bash
+   cp .env.example .env
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+4. Configure database in `.env` file
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=customer_management
+   DB_USERNAME=root
+   DB_PASSWORD=your_password
+   ```
 
-## Contributing
+5. Generate application key
+   ```bash
+   php artisan key:generate
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+6. Run migrations
+   ```bash
+   php artisan migrate
+   ```
 
-## Code of Conduct
+7. Seed database (optional)
+   ```bash
+   php artisan db:seed
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+8. Run the application
+   ```bash
+   php artisan serve
+   ```
 
-## Security Vulnerabilities
+## 📚 Usage
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Customer Management
 
-## License
+#### Create Customer
+Navigate to `/customer/create` to add a new customer with the following information:
+- First Name
+- Last Name
+- Email
+- Phone
+- Bank Account Number
+- About
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#### Edit/View Customer
+- Click the edit icon (✏️) to modify customer details
+- Click the eye icon (👁️) to view customer information
+
+#### Delete Customer
+Click the trash icon (🗑️) to soft delete a customer. They will be moved to trash.
+
+### Trash Management
+
+#### Access Trash
+Click the trash icon in the customer list header to view deleted customers.
+
+#### Restore Customer
+In trash view, click the undo icon (↩️) to restore a deleted customer.
+
+#### Permanent Delete
+Click the trash icon (🗑️) in trash view to permanently delete a customer.
+
+## 🔄 Routes
+
+| Route | Method | Description |
+|-------|--------|-------------|
+| `/` | GET | Redirect to customer list |
+| `/customer` | GET | List all customers |
+| `/customer/create` | GET | Show create form |
+| `/customer` | POST | Store new customer |
+| `/customer/{id}/edit` | GET | Show edit form |
+| `/customer/{id}` | PUT | Update customer |
+| `/customer/{id}` | DELETE | Soft delete customer |
+| `/customer/trash` | GET | List deleted customers |
+| `/customer/{id}/restore` | PATCH | Restore deleted customer |
+| `/customer/{id}/forcedelete` | DELETE | Permanently delete customer |
+
+## 🏗️ Database Structure
+
+The `customers` table includes:
+- `id` - Primary key
+- `first_name` - Customer's first name
+- `last_name` - Customer's last name
+- `email` - Customer's email address
+- `phone` - Customer's phone number
+- `bank_account_number` - Bank account number
+- `about` - Additional information
+- `image` - Customer's image (optional)
+- `deleted_at` - Soft delete timestamp
+- `created_at` - Creation timestamp
+- `updated_at` - Last update timestamp
+
+## 🧪 Testing
+
+### Factories
+
+The project includes Customer factories for testing:
+
+```php
+// Create a regular customer
+Customer::factory()->create();
+
+// Create a soft-deleted customer
+Customer::factory()->deleted()->create();
+```
+
+### Seeding
+
+Run seeders with:
+```bash
+php artisan db:seed --class=CustomerSeeder
+```
+
+## 📂 Project Structure
+
+```
+app/
+├── Http/
+│   └── Controllers/
+│       └── CustomerController.php
+├── Models/
+│   └── Customer.php
+database/
+├── factories/
+│   └── CustomerFactory.php
+├── migrations/
+│   └── create_customers_table.php
+resources/
+├── views/
+│   └── customer/
+│       ├── index.blade.php
+│       ├── trash.blade.php
+│       ├── create.blade.php
+│       └── edit.blade.php
+public/
+└── images/
+    └── customers/
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+
+## 🙏 Acknowledgments
+
+- Laravel documentation
+- Bootstrap team
+- Font Awesome project
+- Contributors and testers
+
+## 📧 Contact
+
+Your Name - [@byte_sniper](https://twitter.com/byte_sniper) - nima.shokriv2005@gmail.com
+
+Project Link: [github](https://github.com/Root-Phantom/CustomerCrudApplication)
+
+---
+
+⭐️ From [Root-Phantom](https://github.com/Root-Phantom)
