@@ -1,0 +1,57 @@
+
+services:
+  app:
+    build: .
+    image: customer-management
+    container_name: customer-management-app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+      - .docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - customer-network
+    depends_on:
+      - db
+    ports:
+      - "8000:80"
+
+  db:
+    image: mysql:8.0
+    container_name: customer-management-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - customer-network
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: customer-management-phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "8081:80"
+    networks:
+      - customer-network
+    depends_on:
+      - db
+
+networks:
+  customer-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
